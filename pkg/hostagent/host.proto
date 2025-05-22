@@ -1,0 +1,21 @@
+syntax = "proto3";
+package hostagent;
+
+option go_package = "infra-scheduler/pkg/hostagent";
+
+service HostAgent {
+  rpc ProvisionVM(VMRequest) returns (VMResponse);
+}
+
+message VMRequest {
+  string user_id = 1;
+  int32 cores    = 2;
+  int32 memory   = 3;
+  int32 disk     = 4;
+}
+
+message VMResponse {
+  bool success = 1;
+  string vm_id = 2;
+  string error = 3;
+}

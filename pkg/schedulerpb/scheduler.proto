@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package schedulerpb;
+
+option go_package = "infra-scheduler/pkg/schedulerpb";
+
+// Scheduler service handles VM scheduling and provisioning
+service Scheduler {
+  // ScheduleVM schedules and provisions a new VM
+  rpc ScheduleVM(ScheduleRequest) returns (ScheduleResponse) {}
+}
+
+// ScheduleRequest represents a VM scheduling request
+message ScheduleRequest {
+  string name = 1;
+  int32 cpu = 2;
+  int32 memory = 3;
+  int32 disk = 4;
+  string image = 5;
+  string environment = 6;
+}
+
+// ScheduleResponse represents the result of a scheduling request
+message ScheduleResponse {
+  bool success = 1;
+  string vm_id = 2;
+  string error = 3;
+}
+
+// VMRequest represents a VM provisioning request
+message VMRequest {
+  string name = 1;
+  int32 cpu = 2;
+  int32 memory = 3;
+  int32 disk = 4;
+  string image = 5;
+  string environment = 6;
+} 
